@@ -1,0 +1,65 @@
+{
+   "abstract" : "CHI-based session backend for Dancer",
+   "author" : [
+      "Richard Sim\u00c3\u00b5es <rsimoes at cpan dot org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.300002, CPAN::Meta::Converter version 2.112621",
+   "license" : [
+      "artistic_2"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Dancer-Session-CHI",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.30"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "CHI" : 0,
+            "Dancer::Config" : 0,
+            "Dancer::Logger" : 0,
+            "Dancer::Plugin::Cache::CHI" : 0,
+            "Dancer::Session::Abstract" : 0,
+            "English" : 0,
+            "Moose" : 0,
+            "MooseX::NonMoose" : 0,
+            "Scalar::Util" : 0,
+            "namespace::autoclean" : 0,
+            "perl" : "v5.10.0",
+            "strict" : 0,
+            "utf8::all" : 0,
+            "warnings" : 0
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Dancer" : 0,
+            "Dancer::Test" : 0,
+            "File::Find" : 0,
+            "File::Temp" : 0,
+            "Test::More" : 0,
+            "Test::Most" : "0.22"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/rsimoes/dancer-session-chi/issues"
+      },
+      "homepage" : "https://metacpan.org/release/Dancer-Session-CHI",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/rsimoes/dancer-session-chi.git",
+         "web" : "https://github.com/rsimoes/dancer-session-chi"
+      }
+   },
+   "version" : "v0.0.1"
+}
+
