@@ -9,9 +9,10 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "CHI-based session backend for Dancer",
+  "ABSTRACT" => "CHI-based session engine for Dancer",
   "AUTHOR" => "Richard Sim\303\265es <rsimoes at cpan dot org>",
   "BUILD_REQUIRES" => {
+    "Carp::Always" => "0.10",
     "Dancer" => 0,
     "Dancer::Test" => 0,
     "File::Find" => 0,
@@ -27,21 +28,24 @@ my %WriteMakefileArgs = (
   "LICENSE" => "artistic_2",
   "NAME" => "Dancer::Session::CHI",
   "PREREQ_PM" => {
-    "CHI" => 0,
+    "CHI" => "0.49",
     "Dancer::Config" => 0,
     "Dancer::Logger" => 0,
     "Dancer::Plugin::Cache::CHI" => 0,
     "Dancer::Session::Abstract" => 0,
     "English" => 0,
-    "Moose" => 0,
-    "MooseX::NonMoose" => 0,
+    "Moose" => "2.0205",
+    "MooseX::ClassAttribute" => "0.26",
+    "MooseX::InsideOut" => "0.106",
+    "MooseX::NonMoose" => "0.22",
+    "MooseX::Types::Moose" => "0.30",
     "Scalar::Util" => 0,
-    "namespace::autoclean" => 0,
+    "namespace::autoclean" => "0.13",
     "strict" => 0,
     "utf8::all" => 0,
     "warnings" => 0
   },
-  "VERSION" => "v0.0.1",
+  "VERSION" => "v0.0.2",
   "test" => {
     "TESTS" => "t/*.t"
   }

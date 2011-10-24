@@ -1,9 +1,9 @@
 
 
 This archive contains the distribution Dancer-Session-CHI,
-version v0.0.1:
+version v0.0.2:
 
-  CHI-based session backend for Dancer
+  CHI-based session engine for Dancer
 
 This software is Copyright (c) 2011 by Richard Simões.
 
