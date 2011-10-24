@@ -26,7 +26,6 @@ __DATA__
 Simões
 placeable
 Richard
-Sim
-es
+Simões
 Richard
-Sim
+Simões

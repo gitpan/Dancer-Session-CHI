@@ -10,10 +10,9 @@ use ExtUtils::MakeMaker 6.30;
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "CHI-based session engine for Dancer",
-  "AUTHOR" => "Richard Sim\303\265es <rsimoes at cpan dot org>",
+  "AUTHOR" => "Richard Sim\x{f5}es <rsimoes at cpan dot org>",
   "BUILD_REQUIRES" => {
     "Carp::Always" => "0.10",
-    "Dancer" => 0,
     "Dancer::Test" => 0,
     "File::Find" => 0,
     "File::Temp" => 0,
@@ -29,8 +28,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Dancer::Session::CHI",
   "PREREQ_PM" => {
     "CHI" => "0.49",
-    "Dancer::Config" => 0,
-    "Dancer::Logger" => 0,
+    "Dancer" => "1.3072",
     "Dancer::Plugin::Cache::CHI" => 0,
     "Dancer::Session::Abstract" => 0,
     "English" => 0,
@@ -45,7 +43,7 @@ my %WriteMakefileArgs = (
     "utf8::all" => 0,
     "warnings" => 0
   },
-  "VERSION" => "v0.0.2",
+  "VERSION" => "v0.0.3",
   "test" => {
     "TESTS" => "t/*.t"
   }
