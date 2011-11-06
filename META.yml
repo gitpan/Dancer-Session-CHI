@@ -7,13 +7,14 @@ build_requires:
   Dancer::Test: 0
   File::Find: 0
   File::Temp: 0
+  Module::Build: 0.3601
   Test::More: 0
   Test::Most: 0.22
   perl: 5.006
   strict: 0
   warnings: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.30
+  Module::Build: 0.3601
 dynamic_config: 0
 generated_by: 'Dist::Zilla version 4.300003, CPAN::Meta::Converter version 2.112621'
 license: artistic_2
@@ -39,4 +40,4 @@ resources:
   bugtracker: https://github.com/rsimoes/dancer-session-chi/issues
   homepage: https://metacpan.org/release/Dancer-Session-CHI
   repository: git://github.com/rsimoes/dancer-session-chi.git
-version: v0.0.4
+version: v0.0.5
