@@ -13,7 +13,7 @@ use Scalar::Util 'blessed';
 
 extends 'Dancer::Session::Abstract';
 
-our $VERSION = 'v0.0.5'; # VERSION
+our $VERSION = 'v0.1.0'; # VERSION
 # ABSTRACT: CHI-based session engine for Dancer
 
 class_has _cache => (

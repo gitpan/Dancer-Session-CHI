@@ -26,8 +26,8 @@ my %module_build_args = (
     "Richard Sim\303\265es <rsimoes at cpan dot org>"
   ],
   "dist_name" => "Dancer-Session-CHI",
-  "dist_version" => "v0.0.5",
-  "license" => "artistic_2",
+  "dist_version" => "v0.1.0",
+  "license" => "lgpl",
   "module_name" => "Dancer::Session::CHI",
   "recommends" => {},
   "recursive_test_files" => 1,

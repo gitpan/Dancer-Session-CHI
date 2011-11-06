@@ -1,5 +1,9 @@
 Revision history for Dancer-Session-CHI
 
+v0.1.0    2011-11-06 13:11:29 CST6CDT
+	- Change license to LGPL, v3
+	- First non-point release
+
 v0.0.5    2011-11-06 12:33:21 CST6CDT
 	- Build with Module::Build
 

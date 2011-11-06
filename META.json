@@ -6,7 +6,7 @@
    "dynamic_config" : 0,
    "generated_by" : "Dist::Zilla version 4.300003, CPAN::Meta::Converter version 2.112621",
    "license" : [
-      "artistic_2"
+      "lgpl_3_0"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -67,6 +67,6 @@
          "web" : "https://github.com/rsimoes/dancer-session-chi"
       }
    },
-   "version" : "v0.0.5"
+   "version" : "v0.1.0"
 }
 
