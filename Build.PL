@@ -7,7 +7,7 @@ use Module::Build 0.3601;
 
 my %module_build_args = (
   "build_requires" => {
-    "Carp::Always" => "0.10",
+    "Dancer" => 0,
     "Dancer::Test" => 0,
     "File::Find" => 0,
     "File::Temp" => 0,
@@ -26,21 +26,21 @@ my %module_build_args = (
     "Richard Sim\303\265es <rsimoes at cpan dot org>"
   ],
   "dist_name" => "Dancer-Session-CHI",
-  "dist_version" => "v0.1.0",
+  "dist_version" => "v0.1.1",
   "license" => "lgpl",
   "module_name" => "Dancer::Session::CHI",
   "recommends" => {},
   "recursive_test_files" => 1,
   "requires" => {
     "CHI" => "0.49",
-    "Dancer" => "1.3072",
+    "Dancer::Config" => 0,
+    "Dancer::Logger" => 0,
     "Dancer::Plugin::Cache::CHI" => 0,
     "Dancer::Session::Abstract" => 0,
     "English" => 0,
     "Moose" => "2.0205",
     "MooseX::ClassAttribute" => "0.26",
     "MooseX::NonMoose" => "0.22",
-    "Scalar::Util" => 0,
     "namespace::autoclean" => "0.13",
     "perl" => "5.008",
     "strictures" => 1,

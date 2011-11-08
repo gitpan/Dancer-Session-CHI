@@ -10,8 +10,9 @@ lib/Dancer/Session/CHI.pm
 lib/Dancer/Session/CHI.pod
 perlcritic.rc
 t/00-compile.t
-t/01-create.t
-t/02-usage.t
+t/01-with_plugin.t
+t/02-no_plugin.t
+t/03-usage.t
 t/author-critic.t
 t/author-pod-spell.t
 t/release-cpan-changes.t
