@@ -1,5 +1,10 @@
 Revision history for Dancer-Session-CHI
 
+v0.1.2    2012-04-11 09:26:18 America/Chicago
+	- Module fully reimplemented without Moose.
+	- Fixed issue where CHI, when using file-based cache systems, would place
+	  the session directory in $app_dir/public if given a relative path.
+
 v0.1.1    2011-11-08 13:03:37 CST6CDT
 	- Remove unused Scalar::Util prereq
 	- Avoid Dancer's pernicious global actions by removing `use Dancer qw(...);`
