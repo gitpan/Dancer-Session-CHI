@@ -28,14 +28,13 @@
          "requires" : {
             "CHI" : "0",
             "Dancer" : "1.3095",
-            "Dancer::Plugin::Cache::CHI" : "0",
-            "Dancer::Session::Abstract" : "0",
             "perl" : "5.008"
          }
       },
       "test" : {
          "requires" : {
             "Dancer" : "0",
+            "Dancer::Plugin::Cache::CHI" : "0",
             "Dancer::Test" : "0",
             "File::Find" : "0",
             "File::Temp" : "0",
@@ -56,6 +55,6 @@
          "web" : "https://github.com/rsimoes/dancer-session-chi"
       }
    },
-   "version" : "v0.1.2"
+   "version" : "v0.1.3"
 }
 

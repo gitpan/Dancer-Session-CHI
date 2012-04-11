@@ -4,6 +4,7 @@ author:
   - 'Richard Simões <rsimoes AT cpan DOT org>'
 build_requires:
   Dancer: 0
+  Dancer::Plugin::Cache::CHI: 0
   Dancer::Test: 0
   File::Find: 0
   File::Temp: 0
@@ -22,11 +23,9 @@ name: Dancer-Session-CHI
 requires:
   CHI: 0
   Dancer: 1.3095
-  Dancer::Plugin::Cache::CHI: 0
-  Dancer::Session::Abstract: 0
   perl: 5.008
 resources:
   bugtracker: https://github.com/rsimoes/dancer-session-chi/issues
   homepage: https://metacpan.org/release/Dancer-Session-CHI
   repository: git://github.com/rsimoes/dancer-session-chi.git
-version: v0.1.2
+version: v0.1.3

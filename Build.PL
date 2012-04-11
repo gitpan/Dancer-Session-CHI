@@ -8,6 +8,7 @@ use Module::Build 0.3601;
 my %module_build_args = (
   "build_requires" => {
     "Dancer" => 0,
+    "Dancer::Plugin::Cache::CHI" => 0,
     "Dancer::Test" => 0,
     "File::Find" => 0,
     "File::Temp" => 0,
@@ -23,7 +24,7 @@ my %module_build_args = (
     "Richard Sim\303\265es <rsimoes AT cpan DOT org>"
   ],
   "dist_name" => "Dancer-Session-CHI",
-  "dist_version" => "v0.1.2",
+  "dist_version" => "v0.1.3",
   "license" => "lgpl",
   "module_name" => "Dancer::Session::CHI",
   "recommends" => {},
@@ -31,8 +32,6 @@ my %module_build_args = (
   "requires" => {
     "CHI" => 0,
     "Dancer" => "1.3095",
-    "Dancer::Plugin::Cache::CHI" => 0,
-    "Dancer::Session::Abstract" => 0,
     "perl" => "5.008"
   },
   "script_files" => []
