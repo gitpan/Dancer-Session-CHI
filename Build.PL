@@ -24,7 +24,7 @@ my %module_build_args = (
     "Richard Sim\303\265es <rsimoes AT cpan DOT org>"
   ],
   "dist_name" => "Dancer-Session-CHI",
-  "dist_version" => "v0.1.3",
+  "dist_version" => "v0.1.4",
   "license" => "lgpl",
   "module_name" => "Dancer::Session::CHI",
   "recommends" => {},
