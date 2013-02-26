@@ -5,76 +5,91 @@ use warnings;
 use utf8;
 use Carp;
 use CHI;
+use Dancer qw(cookie);
 use Dancer::Logger;
-use Dancer::Config "setting";
+use Dancer::Config qw(setting);
 use Dancer::ModuleLoader;
-use File::Spec::Functions "rel2abs";
-
+use File::Spec::Functions qw(rel2abs);
+use Scalar::Util qw(blessed);
 
 use base "Dancer::Session::Abstract";
 
-our $VERSION = 'v0.1.4'; # VERSION
+our $VERSION = 'v0.1.5'; # TRIAL VERSION
 # ABSTRACT: CHI-based session engine for Dancer
-
-my $chi;
 
 # Class methods:
 
 sub create {
-	my ($class) = @_;
-	my $self = $class->new;
-	$self->flush;
-	my $session_id = $self->id;
-	Dancer::Logger->debug("Session (id: $session_id) created.");
-	return $self }
+    my ($class) = @_;
+    my $self = $class->new;
+    $self->flush;
+    Dancer::Logger->debug("Session (id: " . $self->id . " created.");
+    return $self;
+}
 
 sub retrieve {
-	my (undef, $session_id) = @_;
-	$chi ||= _build_chi();
-	return $chi->get("session_$session_id") }
+    my (undef, $session_id) = @_;
+    my $chi = _build_chi();
+    return $chi->get("session_$session_id")
+}
 
 # Object methods:
 
 sub flush {
-	my ($self) = @_;
-	$chi ||= _build_chi();
-	my $session_id = $self->id;
-	$chi->set( "session_$session_id" => $self );
-	return $self; }
+    my ($self) = @_;
+    my $chi = _build_chi();
+    my $session_id = $self->id;
+    $chi->set( "session_$session_id" => $self );
+    return $self;
+}
+
+sub purge {
+    my ($self) = @_;
+    my $chi = _build_chi();
+    $chi->purge;
+    return $self;
+}
 
 sub destroy {
-	my ($self) = @_;
-	my $session_id = $self->id;
-	$chi->remove("session_$session_id");
-	Dancer::Logger->debug("Session (id: $session_id) destroyed.");
-	return $self }
+    my ($self) = @_;
+    my $session_id = $self->id;
+    my $chi = _build_chi();
+    $chi->remove("session_$session_id");
+    cookie setting("session_name") => undef;
+    Dancer::Logger->debug("Session (id: $session_id) destroyed.");
+    return $self;
+}
 
-sub reset :method {
-	my ($class) = @_;
-	$chi->clear;
-	return $class }
-
+my $chi;
 sub _build_chi {
-	my $options = setting("session_CHI");
-	( ref $options eq ref {} ) or croak "CHI session options not found";
 
-	# Don't let CHI determine the absolute path:
-	exists $options->{root_dir}
-		and $options->{root_dir} = rel2abs($options->{root_dir});
+    return $chi if blessed($chi) && $chi->isa("CHI");
 
-	my $use_plugin = delete $options->{use_plugin};
-	my $is_loaded = exists setting("plugins")->{"Cache::CHI"};
-	( $use_plugin && !$is_loaded )
-		and croak "CHI plugin requested but not loaded";
+    my $options = setting("session_CHI");
+    ( ref $options eq ref {} ) or croak "CHI session options not found";
 
-	return $use_plugin
-		? do {
-			my $plugin = "Dancer::Plugin::Cache::CHI";
-			my $error_msg = "$plugin is needed and is not installed";
-			Dancer::ModuleLoader->load($plugin)
-				  or raise( core_session => $error_msg );
-			Dancer::Plugin::Cache::CHI::cache() }
-		: CHI->new( %{$options} ) }
+    # Don't let CHI determine the absolute path:
+    if ( exists $options->{root_dir} ) {
+        $options->{root_dir} = rel2abs($options->{root_dir});
+    }
+
+    my $use_plugin = delete $options->{use_plugin};
+    my $is_loaded = exists setting("plugins")->{"Cache::CHI"};
+    if ( $use_plugin && !$is_loaded ) {
+        croak "CHI plugin requested but not loaded";
+    }
+
+    return $use_plugin
+        ? do {
+            my $plugin = "Dancer::Plugin::Cache::CHI";
+            my $error_msg = "$plugin is needed and is not installed";
+            unless ( Dancer::ModuleLoader->load($plugin) ) {
+                raise( core_session => $error_msg );
+            }
+            Dancer::Plugin::Cache::CHI::cache()
+        }
+        : CHI->new( %{$options} );
+}
 
 1;
 =encoding utf8
@@ -87,28 +102,28 @@ Dancer::Session::CHI - CHI-based session engine for Dancer
 
 In a L<Dancer> application:
 
-	set session          => "CHI";
-	set session_expires  => "1 hour";
-	set session_CHI      => { use_plugin => 1 };
+    set session          => "CHI";
+    set session_expires  => "1 hour";
+    set session_CHI      => { use_plugin => 1 };
 
-	set plugins          => {
-		"Cache::CHI" => {
-			driver => 'Memory',
-			global => 1
-		}
-	};
+    set plugins          => {
+        "Cache::CHI" => {
+            driver => 'Memory',
+            global => 1
+        }
+    };
 
 In a F<config.yml>:
 
-	session: CHI
-	session_expires: 1 hour
-	session_CHI:
-		use_plugin: 1
+    session: CHI
+    session_expires: 1 hour
+    session_CHI:
+        use_plugin: 1
 
-	plugins:
-		Cache::CHI:
-			driver: Memory
-			global: 1
+    plugins:
+        Cache::CHI:
+            driver: Memory
+            global: 1
 
 =head1 DESCRIPTION
 
@@ -157,11 +172,12 @@ Writes all session data to the CHI storage backend.
 
 =item C<destroy()>
 
-Ends a Dancer session and wipes all session data from the CHI storage backend.
+Ends a Dancer session and wipes the session's data from the CHI storage backend.
 
-=item C<reset()>
+=item C<purge()>
 
-Clear all Dancer session data from the CHI backend.
+Direct access to CHI's C<purge()> method, clearing the data of all expired
+sessions from the CHI storage backend.
 
 =back
 
@@ -176,7 +192,9 @@ plugin configuration may instead be needed to be done in application code.
 
 =item *
 
-When using L<CHI::Driver::DBI>, thread/fork safety can be ensured by passing it a L<DBIx::Connector> object.
+When using L<CHI::Driver::DBI>, thread/fork safety can be ensured by passing it
+a L<DBIx::Connector> object or database handle returned by
+L<Dancer::Plugin::Database>'s C<database()> subroutine.
 
 =back
 
@@ -189,9 +207,8 @@ L<GitHub issues page|https://github.com/rsimoes/Dancer-Session-CHI/issues>.
 
 Richard Simões <rsimoes at CPAN dot org>
 
-=head1 COPYRIGHT AND LICENSE
+=head1 COPYRIGHT & LICENSE
 
-Copyright © 2011 Richard Simões. This module is released under the terms of the
-L<Artistic License 2.0|http://www.perlfoundation.org/artistic_license_2_0>
-and may be modified and/or redistributed under the same or any compatible license.
-
+Copyright © 2013 Richard Simões. This module is released under the terms of the
+B<MIT License> and may be modified and/or redistributed under the same or any
+compatible license.

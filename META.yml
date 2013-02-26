@@ -3,7 +3,6 @@ abstract: 'CHI-based session engine for Dancer'
 author:
   - 'Richard Simões <rsimoes AT cpan DOT org>'
 build_requires:
-  Dancer: 0
   Dancer::Plugin::Cache::CHI: 0
   Dancer::Test: 0
   File::Find: 0
@@ -14,18 +13,19 @@ build_requires:
 configure_requires:
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300014, CPAN::Meta::Converter version 2.120921'
-license: lgpl
+generated_by: 'Dist::Zilla version 4.300030, CPAN::Meta::Converter version 2.120921'
+license: mit
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Dancer-Session-CHI
 requires:
   CHI: 0
-  Dancer: 1.3095
+  Dancer: 1.3111
+  Scalar::Util: 0
   perl: 5.008
 resources:
   bugtracker: https://github.com/rsimoes/dancer-session-chi/issues
   homepage: https://metacpan.org/release/Dancer-Session-CHI
   repository: git://github.com/rsimoes/dancer-session-chi.git
-version: v0.1.4
+version: v0.1.5
