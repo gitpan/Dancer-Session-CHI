@@ -22,10 +22,11 @@ name: Dancer-Session-CHI
 requires:
   CHI: 0
   Dancer: 1.3111
+  Dancer::Exception: 0
   Scalar::Util: 0
   perl: 5.008
 resources:
   bugtracker: https://github.com/rsimoes/dancer-session-chi/issues
   homepage: https://metacpan.org/release/Dancer-Session-CHI
   repository: git://github.com/rsimoes/dancer-session-chi.git
-version: v0.1.5
+version: v0.1.6

@@ -23,7 +23,7 @@ my %module_build_args = (
     "Richard Sim\303\265es <rsimoes AT cpan DOT org>"
   ],
   "dist_name" => "Dancer-Session-CHI",
-  "dist_version" => "v0.1.5",
+  "dist_version" => "v0.1.6",
   "license" => "mit",
   "module_name" => "Dancer::Session::CHI",
   "recommends" => {},
@@ -31,6 +31,7 @@ my %module_build_args = (
   "requires" => {
     "CHI" => 0,
     "Dancer" => "1.3111",
+    "Dancer::Exception" => 0,
     "Scalar::Util" => 0,
     "perl" => "5.008"
   },
